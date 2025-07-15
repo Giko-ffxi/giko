@@ -232,6 +232,9 @@ listener.reply['set-tod'] = function(username, input)
             local win = death.get_window(name)
 
             if win == nil or win.count > 1 or force_overwrite then
+                if mob.names.hq and common.in_array(mob.names.hq, name) then
+                    tod.day = 0
+                end
                 if death.set_tod(name, gmt_date) then
                     local primary_nq_name = (mob.names and mob.names.nq and mob.names.nq[1])
                     local primary_hq_name = (mob.names and mob.names.hq and mob.names.hq[1])
